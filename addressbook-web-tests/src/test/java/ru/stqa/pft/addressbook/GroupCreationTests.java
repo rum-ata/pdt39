@@ -35,7 +35,8 @@ public class GroupCreationTests {
 
     gotoGroupPage();
     initGroupCreation();
-    fillGroupForm(new GroupData("test1", "test2", "test3"));
+    GroupData new_group = new GroupData("t1","t2","t2");
+    fillGroupForm(new_group);
     submitGroupCreation();
     returnToGroupPage();
   }
