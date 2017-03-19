@@ -67,7 +67,7 @@ public class ContactCreationTests {
         wd.findElement(By.name("title")).sendKeys(contactData.getTittle());
         wd.findElement(By.name("company")).click();
         wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys(contactData.getConpany());
+        wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
         wd.findElement(By.name("address")).click();
         wd.findElement(By.name("address")).clear();
         wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
