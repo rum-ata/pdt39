@@ -6,18 +6,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by Константин on 25.03.2017.
  */
-public class ContactSessionHelper {
-  private FirefoxDriver wd;
+public class ContactSessionHelper extends ContactBaseHelper{
+
 
   public ContactSessionHelper(FirefoxDriver wd) {
 
-    this.wd = wd;
+    super(wd);
   }
-  public void login() {
+  public void login(String username,String password) {
 
-    wd.findElement(By.name("user")).sendKeys("admin");
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.name("pass")).sendKeys("secret");
-    wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    typeC(By.name("user"),username);
+    typeC(By.name("pass"), password);
+    clickC(By.xpath("//form[@id='LoginForm']/input[3]"));
   }
 }
