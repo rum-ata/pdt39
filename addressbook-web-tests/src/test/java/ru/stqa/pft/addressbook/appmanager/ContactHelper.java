@@ -8,7 +8,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 /**
  * Created by Константин on 25.03.2017.
  */
-public class ContactHelper extends ContactBaseHelper{
+public class ContactHelper extends HelperBase{
 
 
   public ContactHelper(FirefoxDriver wd) {
@@ -17,35 +17,35 @@ public class ContactHelper extends ContactBaseHelper{
   }
 
   public void gotoHomePage() {
-    clickC(By.linkText("home page"));
+    click(By.linkText("home page"));
   }
 
 
   public void submitNewContactForm() {
-    clickC(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillNewContanctForm(ContactData contactData) {
-    typeC(By.name("firstname"), contactData.getName());
-    typeC(By.name("middlename"), contactData.getMiddle());
-    typeC(By.name("lastname"), contactData.getLastname());
-    typeC(By.name("nickname"), contactData.getNick());
-    typeC(By.name("title"), contactData.getTittle());
-    typeC(By.name("company"), contactData.getCompany());
-    typeC(By.name("address"), contactData.getAddress());
-    typeC(By.name("home"), contactData.getHome());
-    typeC(By.name("mobile"), contactData.getMobile());
-    typeC(By.name("work"), contactData.getWork());
-    typeC(By.name("fax"), contactData.getFax());
-    typeC(By.name("email"), contactData.getEmail());
-    typeC(By.name("email2"), contactData.getEmail2());
-    typeC(By.name("email3"), contactData.getEmail3());
-    typeC(By.name("homepage"), contactData.getHomepage());
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("middlename"), contactData.getMiddle());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("nickname"), contactData.getNick());
+    type(By.name("title"), contactData.getTittle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHome());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("work"), contactData.getWork());
+    type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    type(By.name("homepage"), contactData.getHomepage());
   }
 
 
   public void gotoNewContanctForm() {
-    clickC(By.linkText("add new"));
+    click(By.linkText("add new"));
   }
 
   public void closeAlertDeletionContact() {
@@ -53,11 +53,11 @@ public class ContactHelper extends ContactBaseHelper{
   }
 
   public void deleteSelectedContact() {
-    clickC(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public void selectContact() {
-    clickC(By.name("selected[]"));
+    click(By.name("selected[]"));
   }
 
   public  boolean isAlertPresent() {
