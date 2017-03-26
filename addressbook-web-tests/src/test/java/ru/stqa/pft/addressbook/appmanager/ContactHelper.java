@@ -69,4 +69,17 @@ public class ContactHelper extends HelperBase{
     }
   }
 
+  public void submitModificationContact() {
+    wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
+  }
+
+  public void fillSinglefieldContact() {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys("name_name1");
+  }
+
+  public void gotoModificationContactForm() {
+    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
+  }
 }
