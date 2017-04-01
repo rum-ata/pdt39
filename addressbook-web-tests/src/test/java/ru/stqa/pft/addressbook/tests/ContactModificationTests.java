@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactModificationTests extends TestBase {
 
@@ -9,7 +10,7 @@ public class ContactModificationTests extends TestBase {
 
     app.getContactHelper().selectContact();
     app.getContactHelper().gotoModificationContactForm();
-    app.getContactHelper().fillSinglefieldContact();
+    app.getContactHelper().fillNewContanctForm(new ContactData("test1_test1","name1", "middle1", "last1", null), false);
     app.getContactHelper().submitModificationContact();
   }
 
