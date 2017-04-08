@@ -52,7 +52,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitNewContactForm() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void fillNewContanctForm(ContactData contactData, boolean creation) {
@@ -71,7 +71,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitModificationContact() {
-    wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
+    wd.findElement(By.name("update")).click();
   }
 
   public void fillSinglefieldContact() {
