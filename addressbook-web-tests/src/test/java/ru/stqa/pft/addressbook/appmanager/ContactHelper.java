@@ -81,7 +81,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void gotoModificationContactForm() {
-    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
+    wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img")).click();
   }
 
   public void gotoNewContanctForm() {
@@ -89,6 +89,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public boolean isContactPresent(){
-    return isElementPresent(By.xpath("//div[@id='content']/form/input[21]"));
+    return isElementPresent(By.name("selected[]"));
   }
 }
