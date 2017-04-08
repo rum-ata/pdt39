@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+
 /**
  * Created by Константин on 19.03.2017.
  */
@@ -56,5 +57,10 @@ public class GroupHelper extends HelperBase {
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getGroupCount() {
+
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
