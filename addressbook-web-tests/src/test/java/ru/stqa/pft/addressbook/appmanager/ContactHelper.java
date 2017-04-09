@@ -88,7 +88,7 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public boolean isContactPresent(){
+  public boolean isContactPresent() {
     return isElementPresent(By.name("selected[]"));
   }
 }

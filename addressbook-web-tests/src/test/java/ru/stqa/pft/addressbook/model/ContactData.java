@@ -8,7 +8,7 @@ public class ContactData {
   private final String nick;
 
 
-  public ContactData( String name, String middle, String lastname, String nick, String group) {
+  public ContactData(String name, String middle, String lastname, String nick, String group) {
     this.group = group;
     this.name = name;
     this.middle = middle;
