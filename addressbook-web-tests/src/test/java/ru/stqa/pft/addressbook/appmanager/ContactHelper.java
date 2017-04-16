@@ -18,6 +18,8 @@ public class ContactHelper extends HelperBase {
 
   }
 
+
+
   public void createContact(ContactData contact) {
     gotoNewContactForm();
     fillNewContactForm(contact, true);
@@ -47,7 +49,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void gotoHomePage() {
-    click(By.linkText("home page"));
+    wd.findElement(By.linkText("home")).click();
   }
 
   public void submitNewContactForm() {
@@ -83,6 +85,10 @@ public class ContactHelper extends HelperBase {
 
   public boolean isContactPresent() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 
   /* заполнение полей формы Контакта
