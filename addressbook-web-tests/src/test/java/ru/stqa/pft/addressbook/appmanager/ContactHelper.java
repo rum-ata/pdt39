@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -20,8 +19,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact) {
-    gotoNewContanctForm();
-    fillNewContanctForm(contact, true);
+    gotoNewContactForm();
+    fillNewContactForm(contact, true);
     submitNewContactForm();
     gotoHomePage();
   }
@@ -55,7 +54,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillNewContanctForm(ContactData contactData, boolean creation) {
+  public void fillNewContactForm(ContactData contactData, boolean creation) {
 
     type(By.name("firstname"), contactData.getName());
     type(By.name("middlename"), contactData.getMiddle());
@@ -84,7 +83,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img")).click();
   }
 
-  public void gotoNewContanctForm() {
+  public void gotoNewContactForm() {
     click(By.linkText("add new"));
   }
 
