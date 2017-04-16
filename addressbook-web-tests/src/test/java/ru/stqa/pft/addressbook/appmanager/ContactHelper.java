@@ -73,12 +73,6 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("update")).click();
   }
 
-  public void fillSinglefieldContact() {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("name_name1");
-  }
-
   public void gotoModificationContactForm() {
     wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img")).click();
   }
@@ -90,4 +84,12 @@ public class ContactHelper extends HelperBase {
   public boolean isContactPresent() {
     return isElementPresent(By.name("selected[]"));
   }
+
+  /* заполнение полей формы Контакта
+  public void fillSinglefieldContact() {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys("name_name1");
+  }
+*/
 }
