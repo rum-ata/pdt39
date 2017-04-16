@@ -35,8 +35,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int indexC) {
+    wd.findElements(By.name("selected[]")).get(indexC).click();
+    //click(By.name("selected[]"));
   }
 
   public boolean isAlertPresent() {
