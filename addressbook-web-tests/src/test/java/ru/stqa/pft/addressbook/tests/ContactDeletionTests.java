@@ -12,7 +12,7 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     app.getContactHelper().gotoHomePage();
     if (!app.getContactHelper().isContactPresent()) {
-      app.getContactHelper().createContact(new ContactData("test1", "name1", "middle1", "last1", "test1"));
+      app.getContactHelper().createContact(new ContactData("test1", "middle1", "last1", "nick1", "test1"));
     }
     List<ContactData> beforeC = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(beforeC.size()-1);

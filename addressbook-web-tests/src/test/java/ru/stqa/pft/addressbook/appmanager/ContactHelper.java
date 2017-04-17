@@ -103,7 +103,8 @@ public class ContactHelper extends HelperBase {
     for (int i = 1; i <= sizeContactList; i++){
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
       String lName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[2]")).getText();
-      ContactData contact = new ContactData(fName, null,lName, null, null);
+      String id = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[1]/input")).getAttribute("id");
+      ContactData contact = new ContactData(id, fName, null,lName, null, null);
       contacts.add(contact);
     }
     return contacts;

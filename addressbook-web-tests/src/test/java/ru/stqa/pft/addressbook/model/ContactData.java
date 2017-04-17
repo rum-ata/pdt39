@@ -6,9 +6,29 @@ public class ContactData {
   private final String middle;
   private final String lastname;
   private final String nick;
+  private final String id;
 
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public String getId() {
+    return id;
+  }
 
   public ContactData(String name, String middle, String lastname, String nick, String group) {
+    this.id = null;
+    this.group = group;
+    this.name = name;
+    this.middle = middle;
+    this.lastname = lastname;
+    this.nick = nick;
+  }
+
+
+  public ContactData(String id, String name, String middle, String lastname, String nick, String group) {
+    this.id = id;
     this.group = group;
     this.name = name;
     this.middle = middle;
@@ -42,6 +62,7 @@ public class ContactData {
     return "ContactData{" +
             "name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", id='" + id + '\'' +
             '}';
   }
 
@@ -53,13 +74,15 @@ public class ContactData {
     ContactData that = (ContactData) o;
 
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    return id != null ? id.equals(that.id) : that.id == null;
   }
 
   @Override
   public int hashCode() {
     int result = name != null ? name.hashCode() : 0;
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (id != null ? id.hashCode() : 0);
     return result;
   }
 }
