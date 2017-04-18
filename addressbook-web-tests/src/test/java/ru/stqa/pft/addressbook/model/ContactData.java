@@ -23,7 +23,7 @@ public class ContactData {
   }
 
   public ContactData(String name, String middle, String lastname, String nick, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.group = group;
     this.name = name;
     this.middle = middle;
@@ -69,7 +69,6 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
   }
@@ -78,7 +77,6 @@ public class ContactData {
   public int hashCode() {
     int result = name != null ? name.hashCode() : 0;
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    result = 31 * result + id;
     return result;
   }
 
