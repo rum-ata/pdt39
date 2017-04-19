@@ -81,7 +81,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void gotoModificationContactForm() {
-    wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img")).click();
+    int i = wd.findElements(By.name("selected[]")).size();
+    wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[8]/a/img")).click();
   }
 
   public void gotoNewContactForm() {
