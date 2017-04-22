@@ -23,10 +23,4 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("groups"));
       }
 
-  /* не используется
-    public void gotoHomePage(){
-    if (isElementPresent(By.id("mainyable"))) return;
-
-    click(By.linkText("groups"));
-  }*/
 }
