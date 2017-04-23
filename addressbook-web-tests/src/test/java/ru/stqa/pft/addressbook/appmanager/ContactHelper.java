@@ -18,9 +18,7 @@ public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
-
   }
-
 
 
   public void createContact(ContactData contact) {
@@ -30,34 +28,8 @@ public class ContactHelper extends HelperBase {
     gotoHomePage();
   }
 
-  public void closeAlertDeletionContact() {
-    wd.switchTo().alert().accept();
-  }
-
-  public void deleteSelectedContact() {
-    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-  }
-
-  public void selectContact(int indexC) {
-    wd.findElements(By.name("selected[]")).get(indexC).click();
-    //click(By.name("selected[]"));
-  }
-
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  public void gotoHomePage() {
-    wd.findElement(By.linkText("home")).click();
-  }
-
-  public void submitNewContactForm() {
-    click(By.name("submit"));
+  public void gotoNewContactForm() {
+    click(By.linkText("add new"));
   }
 
   public void fillNewContactForm(ContactData contactData, boolean creation) {
@@ -72,11 +44,22 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-
   }
 
-  public void submitModificationContact() {
-    wd.findElement(By.name("update")).click();
+  public void submitNewContactForm() {
+    click(By.name("submit"));
+  }
+
+  public void closeAlertDeletionContact() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void gotoHomePage() {
+    wd.findElement(By.linkText("home")).click();
+  }
+
+  public void selectContact(int indexC) {
+    wd.findElements(By.name("selected[]")).get(indexC).click();
   }
 
   public void gotoModificationContactForm() {
@@ -84,8 +67,21 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[8]/a/img")).click();
   }
 
-  public void gotoNewContactForm() {
-    click(By.linkText("add new"));
+  public void submitModificationContact() {
+    wd.findElement(By.name("update")).click();
+  }
+
+  public void modifyContact(int indexC, ContactData contact) {
+    selectContact(indexC);
+    gotoModificationContactForm();
+    fillNewContactForm(contact, false);
+    submitModificationContact();
+    gotoHomePage();
+  }
+
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public boolean isContactPresent() {
@@ -99,7 +95,6 @@ public class ContactHelper extends HelperBase {
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<>();
     int sizeContactList = wd.findElements(By.name("selected[]")).size();
-
     for (int i = 1; i <= sizeContactList; i++){
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
       String lName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[2]")).getText();
@@ -110,5 +105,13 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
+  public boolean isAlertPresent() {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
 
 }
