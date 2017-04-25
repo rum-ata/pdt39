@@ -18,17 +18,17 @@ public class GroupModificationTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().groupPage();
     if (app.group().all().size()==0) {
-      app.group().create(new GroupData().withName("test2"));
+      app.group().create(new GroupData().withName("test1"));
     }
   }
 
-  @Test (enabled = false)
+  @Test
   public void testGroupModification() {
 
     Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
-            .withId(modifiedGroup.getId()).withName("test2").withHeader("test1").withFooter("test3");
+            .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
     app.group().modify(group);
     Groups after = app.group().all();
     assertEquals(after.size(), before.size());
