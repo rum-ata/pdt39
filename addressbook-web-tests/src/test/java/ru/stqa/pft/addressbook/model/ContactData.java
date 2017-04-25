@@ -1,45 +1,49 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private String group;
-  private final String name;
-  private final String middle;
-  private final String lastname;
-  private final String nick;
 
-  public void setId(int id) {
+  private  int id = Integer.MAX_VALUE;
+  private  String group;
+  private  String name;
+  private  String middle;
+  private  String lastname;
+  private  String nick;
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public ContactData withMiddle(String middle) {
+    this.middle = middle;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNick(String nick) {
+    this.nick = nick;
+    return this;
+  }
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
-  private  int id;
 
 
-  public String getLastname() {
-    return lastname;
-  }
 
   public int getId() {
     return id;
-  }
-
-  public ContactData(String name, String middle, String lastname, String nick, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.group = group;
-    this.name = name;
-    this.middle = middle;
-    this.lastname = lastname;
-    this.nick = nick;
-  }
-
-
-  public ContactData(int id, String name, String middle, String lastname, String nick, String group) {
-    this.id = id;
-    this.group = group;
-    this.name = name;
-    this.middle = middle;
-    this.lastname = lastname;
-    this.nick = nick;
-
   }
 
   public String getName() {
@@ -50,7 +54,7 @@ public class ContactData {
     return middle;
   }
 
-  public String getLastName() {
+  public String getLastname() {
     return lastname;
   }
 

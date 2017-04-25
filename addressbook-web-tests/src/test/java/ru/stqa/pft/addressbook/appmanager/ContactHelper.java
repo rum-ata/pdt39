@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
 
     type(By.name("firstname"), contactData.getName());
     type(By.name("middlename"), contactData.getMiddle());
-    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNick());
 
     if (creation) {
@@ -106,7 +106,7 @@ public class ContactHelper extends HelperBase {
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
       String lName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[2]")).getText();
       int id = Integer.parseInt(wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[1]/input")).getAttribute("id"));
-      ContactData contact = new ContactData(id, fName, null,lName, null, null);
+      ContactData contact = new ContactData().withId(id).withName(fName).withLastname(lName);
       contacts.add(contact);
     }
     return contacts;
