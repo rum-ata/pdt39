@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Константин on 25.03.2017.
@@ -58,8 +60,10 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.linkText("home")).click();
   }
 
-  public void selectContact(int indexC) {
-    wd.findElements(By.name("selected[]")).get(indexC).click();
+
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
   }
 
   public void gotoModificationContactForm() {
@@ -71,16 +75,21 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("update")).click();
   }
 
-  public void modifyC(int indexC, ContactData contact) {
-    selectContact(indexC);
+  public void modifyC(ContactData contact) {
+    selectContactById(contact.getId());
     gotoModificationContactForm();
     fillNewContactForm(contact, false);
     submitModificationContact();
     gotoHomePage();
   }
 
-  public void deleteC(int indexC) {
-    selectContact(indexC);
+
+
+
+
+  public void deleteC(ContactData contact) {
+
+    selectContactById(contact.getId());
     deleteSelectedContact();
     closeAlertDeletionContact();
     gotoHomePage();
@@ -99,8 +108,10 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> listC() {
-    List<ContactData> contacts = new ArrayList<>();
+
+
+  public Set<ContactData> allC() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     int sizeContactList = wd.findElements(By.name("selected[]")).size();
     for (int i = 1; i <= sizeContactList; i++){
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
@@ -120,5 +131,7 @@ public class ContactHelper extends HelperBase {
       return false;
     }
   }
+
+
 
 }
