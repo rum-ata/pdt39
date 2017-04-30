@@ -133,7 +133,7 @@ public class ContactHelper extends HelperBase {
       String fName = cells.get(2).getText();
       String[] phones = cells.get(5).getText().split("\n");
       contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName)
-              .withHomePhone(phones[0]).withMiddle(phones[1]).withWorkPhone(phones[2]));
+              .withHomePhone(phones[0]).withMobilPhone(phones[1]).withWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
   }
@@ -144,7 +144,7 @@ public class ContactHelper extends HelperBase {
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
-    String mobil  = wd.findElement(By.name("mobil")).getAttribute("value");
+    String mobil  = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
     return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname)
             .withHomePhone(home).withMobilPhone(mobil).withWorkPhone(work);
