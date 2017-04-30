@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
 
-
 /**
  * Created by Константин on 19.03.2017.
  */
