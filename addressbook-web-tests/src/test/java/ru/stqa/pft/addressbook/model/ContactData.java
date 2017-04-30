@@ -8,9 +8,12 @@ public class ContactData {
   private  String middle;
   private  String lastname;
   private  String nick;
-  private  String home;
-  private  String mobil;
-  private  String work;
+
+
+
+  private  String homePhone;
+  private  String mobilPhone;
+  private  String workPhone;
 
   public ContactData withGroup(String group) {
     this.group = group;
@@ -42,23 +45,32 @@ public class ContactData {
     return this;
   }
 
-  public  ContactData withHomePhone(String home) {
-    this.home = home;
+  public  ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
     return this;
   }
 
-  public  ContactData withMobilPhone(String mobil) {
-    this.mobil = mobil;
+  public  ContactData withMobilPhone(String mobilPhone) {
+    this.mobilPhone = mobilPhone;
     return this;
   }
 
-  public  ContactData withWorkPhone(String work) {
-    this.work = work;
+  public  ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
     return this;
   }
 
+  public String getHomePhone() {
+    return homePhone;
+  }
 
+  public String getMobilPhone() {
+    return mobilPhone;
+  }
 
+  public String getWorkPhone() {
+    return workPhone;
+  }
 
   public int getId() {
     return id;
