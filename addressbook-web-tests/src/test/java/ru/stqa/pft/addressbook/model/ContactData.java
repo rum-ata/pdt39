@@ -20,7 +20,14 @@ public class ContactData {
   private String email2;
   private String email3;
 
+  private  String address;
 
+
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
 
   public ContactData withEmails(String emails) {
     this.emails = emails;
@@ -90,6 +97,10 @@ public class ContactData {
   public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
+  }
+
+  public String getAddress() {
+    return address;
   }
 
   public String getEmails() {

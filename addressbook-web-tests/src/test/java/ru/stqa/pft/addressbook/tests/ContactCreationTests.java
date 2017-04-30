@@ -16,6 +16,7 @@ public class ContactCreationTests extends TestBase {
     app.contactC().gotoHomePage();
     Contacts beforeC = app.contactC().allC();
     ContactData contact = new ContactData().withName("test1").withMiddle("middle1").withLastname("last1").withNick("nick1")
+            .withAddress("мой адрес не дом и не улица")
             .withHomePhone("111").withMobilPhone("222").withWorkPhone("333")
             .withEmail("q1@q.com").withEmail2("q2@q.com").withEmail3("q3@q.com")
             .withGroup("test1");
@@ -34,6 +35,7 @@ public class ContactCreationTests extends TestBase {
     Contacts beforeC = app.contactC().allC();
     //добавить контакт с "плохим" именем
     ContactData contact = new ContactData().withName("test1'").withMiddle("middle1").withLastname("last1").withNick("nick1")
+            .withAddress("мой адрес не дом и не улица")
             .withHomePhone("111").withMobilPhone("222").withWorkPhone("333")
             .withEmail("q1@q.com").withEmail2("q2@q.com").withEmail3("q3@q.com")
             .withGroup("test1");

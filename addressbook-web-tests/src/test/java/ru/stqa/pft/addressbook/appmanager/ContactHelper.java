@@ -42,6 +42,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("email3"), contactData.getEmail3());
+    type(By.name("address"), contactData.getAddress());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -129,9 +130,12 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String lName = cells.get(1).getText();
       String fName = cells.get(2).getText();
+      String address = cells.get(3).getText();
       String emails = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
+
       contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName)
+              .withAddress(address)
               .withAllPhones(allPhones)
               .withEmails(emails));
     }
@@ -143,6 +147,7 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobil  = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
@@ -150,6 +155,7 @@ public class ContactHelper extends HelperBase {
     String email2  = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname)
+            .withAddress(address)
             .withHomePhone(home).withMobilPhone(mobil).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
