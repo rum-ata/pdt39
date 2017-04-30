@@ -36,6 +36,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("middlename"), contactData.getMiddle());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNick());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilPhone());
+    type(By.name("work"), contactData.getWorkPhone());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -128,7 +131,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String lName = cells.get(1).getText();
       String fName = cells.get(2).getText();
-      contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName));
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName)
+              .withHomePhone(phones[0]).withMiddle(phones[1]).withWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
   }
