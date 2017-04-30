@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Константин on 30.04.2017.
  */
-public class ContactPhoneTests extends TestBase {
+public class ContactEmailTests extends TestBase{
 
   @Test
   public void testContactPhone() {
@@ -17,9 +17,9 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contactC().allC().iterator().next();
     ContactData contactInfoFromEditForm = app.contactC().infoFromEditForm(contact);
 
-    assertThat(contact.getHomePhone(), equalTo(cleaned(contactInfoFromEditForm.getHomePhone())));
-    assertThat(contact.getMobilPhone(), equalTo(cleaned(contactInfoFromEditForm.getMobilPhone())));
-    assertThat(contact.getWorkPhone(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhone())));
+    assertThat(contact.getEmail(), equalTo(cleaned(contactInfoFromEditForm.getEmail())));
+    assertThat(contact.getEmail2(), equalTo(cleaned(contactInfoFromEditForm.getEmail2())));
+    assertThat(contact.getEmail3(), equalTo(cleaned(contactInfoFromEditForm.getEmail3())));
   }
 
   public String cleaned(String phone) {

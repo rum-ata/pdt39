@@ -16,10 +16,12 @@ public class ContactCreationTests extends TestBase {
     app.contactC().gotoHomePage();
     Contacts beforeC = app.contactC().allC();
     ContactData contact = new ContactData().withName("test1").withMiddle("middle1").withLastname("last1").withNick("nick1")
-            .withHomePhone("111").withMobilPhone("222").withWorkPhone("333").withGroup("test1");
+            .withHomePhone("111").withMobilPhone("222").withWorkPhone("333")
+            .withEmail("q1@q.com").withEmail2("q2@q.com").withEmail3("q3@q.com")
+            .withGroup("test1");
 
     app.contactC().createC(contact);
-    assertThat(app.contactC().countC(), equalTo(beforeC.size() +1));
+    assertThat(app.contactC().countC(), equalTo(beforeC.size() + 1));
     Contacts afterC = app.contactC().allC();
     assertThat(afterC, equalTo(beforeC.withAddedC(contact.withId(afterC.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
@@ -32,7 +34,9 @@ public class ContactCreationTests extends TestBase {
     Contacts beforeC = app.contactC().allC();
     //добавить контакт с "плохим" именем
     ContactData contact = new ContactData().withName("test1'").withMiddle("middle1").withLastname("last1").withNick("nick1")
-            .withHomePhone("111").withMobilPhone("222").withWorkPhone("333").withGroup("test1");
+            .withHomePhone("111").withMobilPhone("222").withWorkPhone("333")
+            .withEmail("q1@q.com").withEmail2("q2@q.com").withEmail3("q3@q.com")
+            .withGroup("test1");
 
     app.contactC().createC(contact);
     assertThat(app.contactC().countC(), equalTo(beforeC.size()));
