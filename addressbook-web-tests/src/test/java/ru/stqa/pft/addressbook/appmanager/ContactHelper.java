@@ -3,15 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Константин on 25.03.2017.
@@ -136,4 +134,26 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobil  = wd.findElement(By.name("mobil")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname).withHomePhone(home).withMobilPhone(mobil).withWorkPhone(work);
+  }
+
+  private void initContactModificationById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cell = row.findElements(By.tagName("td"));
+    cell.get(7).findElement(By.tagName("a")).click();
+
+    //wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
+    //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+    //wd.findElement(By.cssSelector(String.format("a[hreh='edit.php?id=%s']", id))).click();
+
+
+  }
 }
