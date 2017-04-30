@@ -24,12 +24,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void createC(ContactData contact) {
-    gotoNewContactForm();
-    fillNewContactForm(contact, true);
-    submitNewContactForm();
-    gotoHomePage();
-  }
+
 
   public void gotoNewContactForm() {
     click(By.linkText("add new"));
@@ -62,7 +57,6 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
   }
@@ -75,23 +69,29 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("update")).click();
   }
 
+  public void createC(ContactData contact) {
+    gotoNewContactForm();
+    fillNewContactForm(contact, true);
+    submitNewContactForm();
+    contactCache = null;
+    gotoHomePage();
+  }
+
   public void modifyC(ContactData contact) {
     //selectContactById(contact.getId());
     gotoModificationContactForm(contact.getId());
     fillNewContactForm(contact, false);
     submitModificationContact();
+    contactCache = null;
     gotoHomePage();
   }
-
-
-
-
 
   public void deleteC(ContactData contact) {
 
     selectContactById(contact.getId());
     deleteSelectedContact();
     closeAlertDeletionContact();
+    contactCache = null;
     gotoHomePage();
   }
 
@@ -104,23 +104,27 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getContactCount() {
+  public int countC() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-
+  private Contacts contactCache = null;
 
   public Contacts allC() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     int sizeContactList = wd.findElements(By.name("selected[]")).size();
     for (int i = 1; i <= sizeContactList; i++){
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
       String lName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[2]")).getText();
       int id = Integer.parseInt(wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[1]/input")).getAttribute("id"));
       ContactData contact = new ContactData().withId(id).withName(fName).withLastname(lName);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
   public boolean isAlertPresent() {
@@ -131,7 +135,5 @@ public class ContactHelper extends HelperBase {
       return false;
     }
   }
-
-
 
 }
