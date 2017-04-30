@@ -9,7 +9,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Константин on 25.03.2017.
@@ -114,25 +116,23 @@ public class ContactHelper extends HelperBase {
     }
 
     contactCache = new Contacts();
-    int sizeContactList = wd.findElements(By.name("selected[]")).size();
+    /*int sizeContactList = wd.findElements(By.name("selected[]")).size();
     for (int i = 1; i <= sizeContactList; i++){
       String fName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[3]")).getText();
       String lName = wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[2]")).getText();
-      int id = Integer.parseInt(wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[1]/input")).getAttribute("id"));
-      ContactData contact = new ContactData().withId(id).withName(fName).withLastname(lName);
-      contactCache.add(contact);
+      int id = Integer.parseInt(wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr["+(i+1)+"]/td[1]/input")).getAttribute("id"));*/
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row: rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lName = cells.get(1).getText();
+      String fName = cells.get(2).getText();
+      contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName));
     }
     return new Contacts(contactCache);
   }
 
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
 
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
@@ -141,7 +141,8 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobil  = wd.findElement(By.name("mobil")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
-    return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname).withHomePhone(home).withMobilPhone(mobil).withWorkPhone(work);
+    return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname)
+            .withHomePhone(home).withMobilPhone(mobil).withWorkPhone(work);
   }
 
   private void initContactModificationById(int id) {
@@ -155,5 +156,14 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector(String.format("a[hreh='edit.php?id=%s']", id))).click();
 
 
+  }
+
+  public boolean isAlertPresent() {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
   }
 }
