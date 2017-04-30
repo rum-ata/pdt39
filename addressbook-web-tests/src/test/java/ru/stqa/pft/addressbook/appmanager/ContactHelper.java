@@ -129,11 +129,11 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String lName = cells.get(1).getText();
       String fName = cells.get(2).getText();
-      String[] emails = cells.get(4).getText().split("\n");
-      String[] phones = cells.get(5).getText().split("\n");
+      String emails = cells.get(4).getText();
+      String allPhones = cells.get(5).getText();
       contactCache.add(new ContactData().withId(id).withName(fName).withLastname(lName)
-              .withHomePhone(phones[0]).withMobilPhone(phones[1]).withWorkPhone(phones[2])
-              .withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2]));
+              .withAllPhones(allPhones)
+              .withEmails(emails));
     }
     return new Contacts(contactCache);
   }
