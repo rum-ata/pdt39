@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
 
-  private String browser;
+  private String browser = "CHROME";
   WebDriver wd;
 
   private NavigationHelper navigationHelper;
