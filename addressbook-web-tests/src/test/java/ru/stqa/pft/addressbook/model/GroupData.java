@@ -1,16 +1,19 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @XStreamAlias("group")
 
 public class GroupData {
-  @XStreamOmitField //пропускает следующее поле в генераторе xml (пропускает id)
+  @XStreamOmitField //в XStream пропускает следующее поле в генераторе xml (пропускает id)
   private int id = Integer.MAX_VALUE;
-
+  @Expose // в JSON добавляет поле в генераторе json (добавляет name)
   private String name;
+  @Expose
   private String header;
+  @Expose
   private String footer;
 
   public GroupData withId(int id) {
