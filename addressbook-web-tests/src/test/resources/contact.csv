@@ -1,3 +1,3 @@
-test 0;middle 0;last 0
-test 1;middle 1;last 1
-test 2;middle 2;last 2
+test 0;middle 0;last 0;nick 0;address 0;111 0;222 0;222 0;em1 0;em2 0;em3 0;\src\test\resources\ava.png;test1
+test 1;middle 1;last 1;nick 1;address 1;111 1;222 1;222 1;em1 1;em2 1;em3 1;\src\test\resources\ava.png;test1
+test 2;middle 2;last 2;nick 2;address 2;111 2;222 2;222 2;em1 2;em2 2;em3 2;\src\test\resources\ava.png;test1
