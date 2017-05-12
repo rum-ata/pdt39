@@ -41,14 +41,13 @@ public class ContactDataGenerator {
         List<ContactData> contacts = generateContacts (count);
         save (contacts, new File(file));
     }
-//{"test1","middle1","last1","nick1","address","tel11","tel12","tel13","email11","email12","email13","test1"});
+
     private  void save(List<ContactData> contacts, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (ContactData contact: contacts){
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getMiddle(), contact.getLastname(), contact.getNick(),
+            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getMiddle(), contact.getLastname(), contact.getNick(),
                     contact.getAddress(), contact.getHomePhone(),contact.getMobilPhone(),contact.getWorkPhone(),
-                    contact.getEmail(),contact.getEmail2(),contact.getEmail3(),
-                    contact.getPhoto(),contact.getGroup()));
+                    contact.getEmail(),contact.getEmail2(),contact.getEmail3(), contact.getGroup()));
         }
         writer.close();
     }
@@ -57,12 +56,10 @@ public class ContactDataGenerator {
     private  List<ContactData> generateContacts(int count) {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++){
-            File photo = new File("/src/test/resources/ava.png");
-            contacts.add(new ContactData().withName((String.format("test %s", i))).withMiddle((String.format("middle %s", i))).withLastname((String.format("last %s", i)))
-                    .withNick((String.format("nick %s", i))).withAddress((String.format("address %s", i)))
-                    .withHomePhone((String.format("111 %s", i))).withMobilPhone((String.format("222 %s", i))).withWorkPhone((String.format("222 %s", i)))
-                    .withEmail((String.format("em1 %s", i))).withEmail2((String.format("em2 %s", i))).withEmail3((String.format("em3 %s", i)))
-                    .withPhoto(photo).withGroup("test1"));
+            contacts.add(new ContactData().withName((String.format("test_%s", i))).withMiddle((String.format("middle_%s", i))).withLastname((String.format("last_%s", i)))
+                    .withNick((String.format("nick_%s", i))).withAddress("мой адрес не дом и не улица")
+                    .withHomePhone((String.format("111_%s", i))).withMobilPhone((String.format("222_%s", i))).withWorkPhone((String.format("333_%s", i)))
+                    .withEmail((String.format("em1_%s", i))).withEmail2((String.format("em2_%s", i))).withEmail3((String.format("em3_%s", i))).withGroup("test1"));
         }
         return contacts;
     }

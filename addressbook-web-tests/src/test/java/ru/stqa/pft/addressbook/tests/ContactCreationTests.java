@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,28 +16,28 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContact(){
+
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{"test1","middle1","last1","nick1","address","tel11","tel12","tel13","email11","email12","email13","/src/test/resources/ava.png","test1"});
-    list.add(new Object[]{"test1","middle1","last1","nick1","address","tel11","tel12","tel13","email11","email12","email13","/src/test/resources/ava.png","test1"});
-    list.add(new Object[]{"test1","middle1","last1","nick1","address","tel11","tel12","tel13","email11","email12","email13","/src/test/resources/ava.png","test1"});
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
+    String line = reader.readLine();
+
+    while (line != null){
+      String[] split = line.split(";");
+      File photo = new File("/src/test/resources/ava.png");
+      list.add(new Object[]{new ContactData().withName(split[0]).withMiddle(split[1]).withLastname(split[2]).withNick(split[3]).withAddress(split[4])
+              .withHomePhone(split[5]).withMobilPhone(split[6]).withWorkPhone(split[7])
+              .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10]).withPhoto(photo).withGroup(split[11])});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
 
-  @Test (dataProvider = "validContact")
-  public void testContactCreation(String name, String middle, String last, String nick, String address, String hPhone, String mPhone, String wPhone,
-                                  String em1, String em2, String em3, String foto, String gr) {
+  @Test (dataProvider = "validContacts")
+  public void testContactCreation(ContactData contact) {
 
     app.contactC().gotoHomePage();
     Contacts beforeC = app.contactC().allC();
-    File photo = new File(foto);
-    ContactData contact = new ContactData().withName(name).withMiddle(middle).withLastname(last).withNick(nick)
-            .withAddress(address)
-            .withHomePhone(hPhone).withMobilPhone(mPhone).withWorkPhone(wPhone)
-            .withEmail(em1).withEmail2(em2).withEmail3(em3)
-            .withPhoto(photo)
-            .withGroup(gr);
-
     app.contactC().createC(contact);
     assertThat(app.contactC().countC(), equalTo(beforeC.size() + 1));
     Contacts afterC = app.contactC().allC();
