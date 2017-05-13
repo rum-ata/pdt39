@@ -1,0 +1,44 @@
+<list>
+  <contact>
+    <group>test1</group>
+    <name>test_0</name>
+    <middle>middle_0</middle>
+    <lastname>last_0</lastname>
+    <nick>nick_0</nick>
+    <homePhone>111_0</homePhone>
+    <mobilPhone>222_0</mobilPhone>
+    <workPhone>333_0</workPhone>
+    <email>em1_0</email>
+    <email2>em2_0</email2>
+    <email3>em3_0</email3>
+    <address>мой адрес не дом и не улица</address>
+  </contact>
+  <contact>
+    <group>test1</group>
+    <name>test_1</name>
+    <middle>middle_1</middle>
+    <lastname>last_1</lastname>
+    <nick>nick_1</nick>
+    <homePhone>111_1</homePhone>
+    <mobilPhone>222_1</mobilPhone>
+    <workPhone>333_1</workPhone>
+    <email>em1_1</email>
+    <email2>em2_1</email2>
+    <email3>em3_1</email3>
+    <address>мой адрес не дом и не улица</address>
+  </contact>
+  <contact>
+    <group>test1</group>
+    <name>test_2</name>
+    <middle>middle_2</middle>
+    <lastname>last_2</lastname>
+    <nick>nick_2</nick>
+    <homePhone>111_2</homePhone>
+    <mobilPhone>222_2</mobilPhone>
+    <workPhone>333_2</workPhone>
+    <email>em1_2</email>
+    <email2>em2_2</email2>
+    <email3>em3_2</email3>
+    <address>мой адрес не дом и не улица</address>
+  </contact>
+</list>
