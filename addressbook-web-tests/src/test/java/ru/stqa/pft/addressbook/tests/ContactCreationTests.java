@@ -20,35 +20,35 @@ public class ContactCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validContactsCsv() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
-    String line = reader.readLine();
-
-    while (line != null){
-      String[] split = line.split(";");
-      File photo = new File("/src/test/resources/ava.png");
-      list.add(new Object[]{new ContactData().withName(split[0]).withMiddle(split[1]).withLastname(split[2]).withNick(split[3]).withAddress(split[4])
-              .withHomePhone(split[5]).withMobilPhone(split[6]).withWorkPhone(split[7])
-              .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10]).withPhoto(photo).withGroup(split[11])});
-      line = reader.readLine();
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")))){
+      String line = reader.readLine();
+      while (line != null){
+        String[] split = line.split(";");
+        File photo = new File("/src/test/resources/ava.png");
+        list.add(new Object[]{new ContactData().withName(split[0]).withMiddle(split[1]).withLastname(split[2]).withNick(split[3]).withAddress(split[4])
+                .withHomePhone(split[5]).withMobilPhone(split[6]).withWorkPhone(split[7])
+                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10]).withPhoto(photo).withGroup(split[11])});
+        line = reader.readLine();
+      }
+      return list.iterator();
     }
-    return list.iterator();
+
   }
 
   @DataProvider
   public Iterator<Object[]> validContactsXml() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
-    String xml = "";
-    String line = reader.readLine();
-    while (line != null){
-      xml+=line;
-      line = reader.readLine();
+    try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))){
+      String xml = "";
+      String line = reader.readLine();
+      while (line != null){
+        xml+=line;
+        line = reader.readLine();
+      }
+      XStream xStream = new XStream();
+      xStream.processAnnotations(ContactData.class);
+      List<ContactData> contacts = (List<ContactData>)xStream.fromXML(xml);
+      return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
     }
-    XStream xStream = new XStream();
-    xStream.processAnnotations(ContactData.class);
-    List<ContactData> contacts = (List<ContactData>)xStream.fromXML(xml);
-    return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
-
   }
 
   @Test (dataProvider = "validContactsXml")
