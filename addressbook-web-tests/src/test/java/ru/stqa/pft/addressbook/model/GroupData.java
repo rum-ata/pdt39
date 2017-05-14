@@ -3,18 +3,39 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @XStreamAlias("group")
-
+@Entity //привязка к БД
+@Table (name = "group_list") //привязка к таблице в БД
 public class GroupData {
   @XStreamOmitField //в XStream пропускает следующее поле в генераторе xml (пропускает id)
-  private int id = Integer.MAX_VALUE;
+  @Id //привязка к столбцу
+  @Column (name = "group_id") //привязка к столбцу таблицы БД
+    private int id = Integer.MAX_VALUE;
+
+  @Column (name = "group_name")
   @Expose // в JSON добавляет поле в генераторе json (добавляет name)
   private String name;
-  @Expose
+
+  @Column (name = "group_header") //привязка к столбцу таблицы БД
+  @Type(type = "text") //тип данных в столбце таблицы БД
+  @Expose // в JSON добавляет поле в генераторе json (добавляет name)
   private String header;
-  @Expose
+
+  @Column (name = "group_footer") //привязка к столбцу таблицы БД
+  @Type(type = "text") //тип данных в столбце таблицы БД
+  @Expose // в JSON добавляет поле в генераторе json (добавляет name)
   private String footer;
+
+
+
+
 
   public GroupData withId(int id) {
     this.id = id;
