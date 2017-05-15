@@ -44,21 +44,31 @@ public class ContactData {
   private String allPhones;
   @Transient
   private String emails;
-  @Transient
+  //@Transient
+  @Column (name = "email")
+  @Type(type = "text")
   private String email;
-  @Transient
+  //@Transient
+  @Column (name = "email2")
+  @Type(type = "text")
   private String email2;
-  @Transient
+  //@Transient
+  @Column (name = "email3")
+  @Type(type = "text")
   private String email3;
 
-  @Transient
+  //@Transient
+  @Column (name = "address")
+  @Type(type = "text")
   private  String address;
 
-  @Column (name = "photo")
-  @Type(type = "text")
+  //@Column (name = "photo")
+  //@Type(type = "text")
+  @Transient
   private String photo;
 
   @Transient
+
   private String group;
 
 

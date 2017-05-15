@@ -24,10 +24,10 @@ public class ContactCreationTests extends TestBase {
       String line = reader.readLine();
       while (line != null){
         String[] split = line.split(";");
-        File photo = new File("/src/test/resources/ava.png");
+        File photo = new File("/src/test/resources/ava.png"); //будет без фото
         list.add(new Object[]{new ContactData().withName(split[0]).withMiddle(split[1]).withLastname(split[2]).withNick(split[3]).withAddress(split[4])
                 .withHomePhone(split[5]).withMobilPhone(split[6]).withWorkPhone(split[7])
-                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10]).withPhoto(photo).withGroup(split[11])});
+                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10])});
         line = reader.readLine();
       }
       return list.iterator();

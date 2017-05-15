@@ -86,7 +86,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modifyC(ContactData contact) {
-    //selectContactById(contact.getId());
     gotoModificationContactForm(contact.getId());
     fillNewContactForm(contact, false);
     submitModificationContact();
