@@ -173,6 +173,38 @@ public class ContactHelper extends HelperBase {
 
   }
 
+  public String infoFromFullDataPage(ContactData contact) {
+    initFullDataContactPageById(contact.getId());
+    String content = wd.findElement(By.xpath(".//*[@id='content']")).getText();
+    content = content.replaceAll("Member.*","").replace("\n","").replace(" ","").replace("H:","").replace("M:","").replace("W:",""); //очистка
+    return content;
+  }
+
+  public void initFullDataContactPageById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cell = row.findElements(By.tagName("td"));
+    cell.get(6).findElement(By.tagName("a")).click();
+  }
+
+  public String madeContentInfoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String midname = wd.findElement(By.name("middlename")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobil  = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2  = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    String content = firstname +  midname + lastname + nickname + address + home + mobil + work + email + email2 + email3;
+    content = content.replaceAll(" ","");
+    return content;
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
