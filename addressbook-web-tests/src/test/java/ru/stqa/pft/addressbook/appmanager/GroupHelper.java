@@ -21,7 +21,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void returnToGroupPage() {
-    click(By.linkText("group page"));
+    click(By.xpath("html/body/div[1]/div[3]/ul/li[3]/a"));
   }
 
   public void submitGroupCreation() {
@@ -39,7 +39,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void deleteSelectedGroups() {
-    click(By.name("delete"));
+    click(By.xpath("html/body/div[1]/div[4]/form/input[2]"));
   }
 
 
